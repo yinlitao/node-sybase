@@ -67,7 +67,8 @@ Sybase.prototype.connect = function(callback)
 Sybase.prototype.disconnect = function()
 {
 	this.javaDB.kill();
-	this.connected = false;	
+    this.connected = false;	
+    this.currentMessages = [];
 }
 
 Sybase.prototype.isConnected = function() 
@@ -104,7 +105,8 @@ Sybase.prototype.query = function(sql, callback)
 Sybase.prototype.onSQLResponse = function(jsonMsg)
 {
     var err = null;
-	var request = this.currentMessages[jsonMsg.msgId];
+    var request = this.currentMessages[jsonMsg.msgId];
+    console.log('received:' + jsonMsg.msgId);
     
     //this causes issues if a query receives multiple response events
     //delete this.currentMessages[jsonMsg.msgId];

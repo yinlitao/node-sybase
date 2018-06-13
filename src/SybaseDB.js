@@ -108,8 +108,7 @@ Sybase.prototype.onSQLResponse = function(jsonMsg)
     var request = this.currentMessages[jsonMsg.msgId];
     console.log('received:' + jsonMsg.msgId);
     
-    //this causes issues if a query receives multiple response events
-    //delete this.currentMessages[jsonMsg.msgId];
+    delete this.currentMessages[jsonMsg.msgId];
 
 	var result = jsonMsg.result;
 	if (result.length === 1)

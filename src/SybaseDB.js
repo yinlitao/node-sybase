@@ -94,19 +94,19 @@ Sybase.prototype.query = function(sql, callback)
     msg.callback = callback;
     msg.hrstart = hrstart;
 
-    console.log("this: " + this + " currentMessages: " +  this.currentMessages + " this.queryCount: " + this.queryCount);
+    // console.log("this: " + this + " currentMessages: " +  this.currentMessages + " this.queryCount: " + this.queryCount);
     
     this.currentMessages[msg.msgId] = msg;
 
     this.javaDB.stdin.write(strMsg + "\n");
-    console.log("sql request written: " + strMsg);
+    // console.log("sql request written: " + strMsg);
 };
 
 Sybase.prototype.onSQLResponse = function(jsonMsg)
 {
     var err = null;
     var request = this.currentMessages[jsonMsg.msgId];
-    console.log('received:' + jsonMsg.msgId);
+    // console.log('received:' + jsonMsg.msgId);
     
     delete this.currentMessages[jsonMsg.msgId];
 
